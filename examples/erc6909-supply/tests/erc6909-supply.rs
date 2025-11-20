@@ -3,7 +3,7 @@
 
 use abi::Erc6909TokenSupply;
 use alloy::primitives::{uint, Address, U256};
-use e2e::{receipt, send, watch, Account, EventExt, Panic, PanicCode, Revert};
+use e2e::{receipt, send, watch, Account, EventExt, Revert, RustPanic};
 use eyre::Result;
 
 mod abi;
@@ -169,7 +169,7 @@ async fn mints_rejects_overflow(alice: Account) -> Result<()> {
     let err = send!(contract.mint(alice_addr, id, one))
         .expect_err("should not exceed U256::MAX");
 
-    assert!(err.panicked_with(PanicCode::ArithmeticOverflow));
+    assert!(err.panicked());
 
     let Erc6909TokenSupply::balanceOfReturn { balance } =
         contract.balanceOf(alice_addr, id).call().await?;
