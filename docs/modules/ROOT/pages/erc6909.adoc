@@ -119,7 +119,6 @@ impl IErc165 for VaultManager {
         self.erc6909.supports_interface(interface_id)
     }
 }
-
 ----
 
 This set of interfaces and contracts are all related to https://eips.ethereum.org/EIPS/eip-6909[ERC-6909 Minimal Multi-Token Interface].
