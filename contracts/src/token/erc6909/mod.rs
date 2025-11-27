@@ -13,9 +13,7 @@ use stylus_sdk::{
     storage::{StorageBool, StorageMap, StorageU256},
 };
 
-use crate::utils::{
-    introspection::erc165::IErc165, math::storage::AddAssignUnchecked,
-};
+use crate::utils::introspection::erc165::IErc165;
 
 pub mod extensions;
 
