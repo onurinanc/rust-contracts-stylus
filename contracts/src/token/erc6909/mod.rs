@@ -359,8 +359,8 @@ impl Erc6909 {
     /// Sets `amount` as the allowance of `spender` over the `owner`'s `id`
     /// tokens.
     ///
-    /// This internal function is equivalent to `approve`, and can be used to
-    /// e.g. set automatic allowances for certain subsystems, etc.
+    /// This internal function is equivalent to [`Self::approve`], and can be
+    /// used to e.g. set automatic allowances for certain subsystems, etc.
     ///
     /// # Arguments
     ///
@@ -412,16 +412,17 @@ impl Erc6909 {
 
     /// Approve `spender` to operate on all of `owner`'s tokens
     ///
-    /// This internal function is equivalent to `setOperator`, and can be used
-    /// to e.g. set automatic allowances for certain subsystems, etc.
+    /// This internal function is equivalent to [`Self::set_operator`], and can
+    /// be used to e.g. set automatic allowances for certain subsystems,
+    /// etc.
     ///
     /// # Arguments
     ///
     /// * `&mut self` - Write access to the contract's state.
     /// * `owner` - Account that owns the tokens.
     /// * `spender` - Account that will spend the tokens.
-    /// * `approved` - Flag that determines whether or not permission will be
-    ///   granted to `operator`.
+    /// * `approved` - Flag that determines whether permission will be granted
+    ///   to `operator`.
     ///
     /// # Errors
     ///
@@ -463,10 +464,7 @@ impl Erc6909 {
     /// receiver are [`Address::ZERO`], which means it cannot mint or burn
     /// tokens.
     ///
-    /// Relies on the `_update` mechanism.
-    ///
-    /// NOTE: This function is not virtual, {_update} should be overridden
-    /// instead.
+    /// Relies on the [`Self::_update`] function.
     ///
     /// # Arguments
     ///
@@ -566,7 +564,6 @@ impl Erc6909 {
     /// Updates `owner`'s allowance for `spender` based on spent `amount`.
     ///
     /// Does not update the allowance value in case of infinite allowance.
-    /// Revert if not enough allowance is available.
     ///
     /// # Arguments
     ///
@@ -618,11 +615,8 @@ impl Erc6909 {
     }
 
     /// Creates `amount` of token `id` and assigns them to `account`, by
-    /// transferring it from [`Address::ZERO`]. Relies on the `_update`
-    /// mechanism.
-    ///
-    /// NOTE: This function is not virtual, {_update} should be overridden
-    /// instead.
+    /// transferring it from [`Address::ZERO`].
+    /// Relies on the [`Self::_update`] function.
     ///
     /// # Arguments
     ///
@@ -654,10 +648,7 @@ impl Erc6909 {
     }
 
     /// Destroys a `amount` of token `id` from `account`.
-    /// Relies on the `_update` mechanism.
-    ///
-    /// NOTE: This function is not virtual, {_update} should be overridden
-    /// instead.
+    /// Relies on the [`Self::_update`] function.
     ///
     /// # Arguments
     ///
