@@ -18,6 +18,9 @@ use crate::utils::{
 pub mod extensions;
 
 pub use sol::*;
+
+use crate::utils::math::storage::AddAssignChecked;
+
 #[cfg_attr(coverage_nightly, coverage(off))]
 mod sol {
     use alloy_sol_macro::sol;
@@ -491,6 +494,10 @@ impl Erc6909 {
     /// # Events
     ///
     /// * [`Transfer`].
+    ///
+    /// # Panics
+    ///
+    /// * If updated balance of `to` exceeds [`U256::MAX`].
     fn _transfer(
         &mut self,
         from: Address,
@@ -536,6 +543,10 @@ impl Erc6909 {
     /// # Events
     ///
     /// * [`Transfer`].
+    ///
+    /// # Panics
+    ///
+    /// * If updated balance of `to` exceeds [`U256::MAX`].
     pub fn _update(
         &mut self,
         from: Address,
@@ -561,7 +572,10 @@ impl Erc6909 {
         }
 
         if !to.is_zero() {
-            self.balances.setter(to).setter(id).add_assign_unchecked(amount);
+            self.balances.setter(to).setter(id).add_assign_checked(
+                amount,
+                "should not exceed `U256::MAX` for `balances`",
+            );
         }
 
         evm::log(Transfer { caller, sender: from, receiver: to, id, amount });
@@ -639,6 +653,10 @@ impl Erc6909 {
     /// # Events
     ///
     /// * [`Transfer`] with `from` set to the zero address.
+    ///
+    /// # Panics
+    ///
+    /// * If updated balance of `to` exceeds [`U256::MAX`].
     pub fn _mint(
         &mut self,
         to: Address,
