@@ -1,4 +1,6 @@
-//! Implementation of the ERC-6909 token standard.
+//! Implementation of the [ERC-6909] token standard.
+//!
+//! [ERC-6909]: https://eips.ethereum.org/EIPS/eip-6909
 
 use alloc::{vec, vec::Vec};
 
