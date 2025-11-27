@@ -6,7 +6,7 @@ Useful for scenarios where Fungible and Non-fungible tokens have to be clearly i
 [[usage]]
 == Usage
 
-In order to make an xref:erc6909.adoc[ERC-6909] token with https://docs.rs/openzeppelin-stylus/0.3.0-alpha.1/openzeppelin_stylus/token/erc6909/extensions/supply/index.html[Supply] flavour,
+In order to make an xref:erc6909.adoc[ERC-6909] token with https://docs.rs/openzeppelin-stylus/0.3.0/openzeppelin_stylus/token/erc6909/extensions/supply/index.html[Supply] flavour,
 you need to reexport all the supply-related functions.
 
 [source,rust]
