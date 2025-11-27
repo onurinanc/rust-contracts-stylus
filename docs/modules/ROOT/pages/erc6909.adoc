@@ -14,11 +14,11 @@ On the https://docs.rs/openzeppelin-stylus/0.3.0/openzeppelin_stylus/token/erc69
 [[constructing-an-erc6909-token-contract]]
 == Constructing an ERC-6909 Token Contract
 
-We can easily create our own ERC-6909 token contract, which can be used as a `VaultManager` that brings all token operations into one interface,
-removing the need for multiple approvals or tracking allowances across contracts.
+We can easily create our own ERC-6909 token contract that brings all token operations into the single interface,
+without the need of multiple approvals or tracking allowances across contracts.
 This lets you focus on your application’s core logic while it handles token management.
 
-Here's what our `VaultManager` token might look like.
+Here's what our `Erc6909Example` token might look like.
 
 [source,rust]
 ----
@@ -34,13 +34,13 @@ use stylus_sdk::{
 
 #[entrypoint]
 #[storage]
-struct VaultManager {
+struct Erc6909Example {
     erc6909: Erc6909,
 }
 
 #[public]
 #[implements(IErc6909<Error = erc6909::Error>, IErc165)]
-impl VaultManager {
+impl Erc6909Example {
     fn mint(
         &mut self,
         to: Address,
@@ -61,7 +61,7 @@ impl VaultManager {
 }
 
 #[public]
-impl IErc6909 for VaultManager {
+impl IErc6909 for Erc6909Example {
     type Error = erc6909::Error;
 
     fn balance_of(&self, owner: Address, id: U256) -> U256 {
@@ -114,7 +114,7 @@ impl IErc6909 for VaultManager {
 }
 
 #[public]
-impl IErc165 for VaultManager {
+impl IErc165 for Erc6909Example {
     fn supports_interface(&self, interface_id: B32) -> bool {
         self.erc6909.supports_interface(interface_id)
     }
