@@ -1,4 +1,4 @@
-//! Implementation of the Token Supply extension defined in ERC6909.
+//! Implementation of the Token Supply extension as defined in ERC-6909.
 //! Tracks the total supply of each token id individually.
 
 use alloc::{vec, vec::Vec};
@@ -223,7 +223,7 @@ impl Erc6909TokenSupply {
     /// # Panics
     ///
     /// * If updated balance and/or supply exceeds [`U256::MAX`], may happen
-    ///   during the `mint` operation.
+    ///   during the [`Self::_mint`] operation.
     fn _update(
         &mut self,
         from: Address,

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Erc6909**: `Erc6909` contract and `Erc6909TokenSupply` extension. #777
+
 ### Changed (Breaking)
 
 - `IErc721Wrapper` returns `Vec<u8>` instead of typed `Error`. #822
@@ -33,7 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Cryptography**: EDDSA (Ed25519) signature scheme, Twisted-Edwards Curves, and enhanced elliptic curve configurations (secp256k1, Baby Jubjub, Bandersnatch, Curve25519, Jubjub).
 - **Precompiles**: Enhanced `Precompiles` trait with `p256_verify` wrapper function for ergonomic precompile invocation.
 - **Type Conversions**: Bidirectional conversions between `ruint::Uint` and crypto library `Uint` types, plus conversions between `Uint` and primitive integer types.
-- **Erc6909**: `Erc6909` contract and `Erc6909TokenSupply` extension. #777
 
 ### Changed
 

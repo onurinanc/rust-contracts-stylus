@@ -28,10 +28,12 @@ mod sol {
         #[derive(Debug)]
         #[allow(missing_docs)]
         event Approval(address indexed owner, address indexed spender, uint256 indexed id, uint256 amount);
+
         /// Emitted when `owner` grants or revokes operator status for a `spender`.
         #[derive(Debug)]
         #[allow(missing_docs)]
         event OperatorSet(address indexed owner, address indexed spender, bool approved);
+
         /// Emitted when `amount` tokens of type `id` are moved from `sender` to `receiver` initiated by `caller`.
         #[derive(Debug)]
         #[allow(missing_docs)]
@@ -49,6 +51,7 @@ mod sol {
         #[derive(Debug)]
         #[allow(missing_docs)]
         error ERC6909InsufficientBalance(address sender, uint256 balance, uint256 needed, uint256 id);
+
         /// Indicates a failure with the `spender`’s `allowance`. Used in
         /// transfers.
         ///
@@ -61,6 +64,7 @@ mod sol {
         #[derive(Debug)]
         #[allow(missing_docs)]
         error ERC6909InsufficientAllowance(address spender, uint256 allowance, uint256 needed, uint256 id);
+
         /// Indicates a failure with the `approver` of a token to be approved. Used in approvals.
         /// approver Address initiating an approval operation.
         ///
@@ -68,18 +72,21 @@ mod sol {
         #[derive(Debug)]
         #[allow(missing_docs)]
         error ERC6909InvalidApprover(address approver);
+
         /// Indicates a failure with the token `receiver`. Used in transfers.
         ///
         /// * `receiver` - Address to which the tokens are being transferred.
         #[derive(Debug)]
         #[allow(missing_docs)]
         error ERC6909InvalidReceiver(address receiver);
+
         /// Indicates a failure with the token `sender`. Used in transfers.
         ///
         /// * `sender` - Address whose tokens are being transferred.
         #[derive(Debug)]
         #[allow(missing_docs)]
         error ERC6909InvalidSender(address sender);
+
         /// Indicates a failure with the `spender` to be approved. Used in
         /// approvals.
         ///
@@ -701,7 +708,7 @@ mod tests {
 
     #[motsu::test]
     fn mint(contract: Contract<Erc6909>, alice: Address) {
-        let id = uint!(1_U256);
+        let id = U256::ONE;
         let ten = uint!(10_U256);
 
         // Store the initial balance & supply.
@@ -729,7 +736,7 @@ mod tests {
         alice: Address,
     ) {
         let receiver = Address::ZERO;
-        let id = uint!(1_U256);
+        let id = U256::ONE;
         let ten = uint!(10_U256);
 
         let initial_balance = contract.sender(alice).balance_of(receiver, id);
@@ -753,7 +760,7 @@ mod tests {
     #[motsu::test]
     fn burn(contract: Contract<Erc6909>, alice: Address) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
         let ten = uint!(10_U256);
 
         contract
@@ -774,7 +781,7 @@ mod tests {
         alice: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
         let ten = uint!(10_U256);
 
         contract
@@ -795,7 +802,7 @@ mod tests {
     #[motsu::test]
     fn burn_errors_invalid_sender(contract: Contract<Erc6909>, alice: Address) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         let invalid_sender = Address::ZERO;
 
@@ -810,7 +817,7 @@ mod tests {
     #[motsu::test]
     fn transfer(contract: Contract<Erc6909>, alice: Address, bob: Address) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         contract
             .sender(alice)
@@ -854,7 +861,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         contract
             .sender(alice)
@@ -887,7 +894,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
         let ten = uint!(10_U256);
 
         contract
@@ -927,7 +934,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
         let ten = uint!(10_U256);
 
         contract
@@ -959,7 +966,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         contract
             .sender(alice)
@@ -988,7 +995,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         contract
             .sender(alice)
@@ -1010,7 +1017,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         let allowance = contract.sender(alice).allowance(alice, bob, id);
         assert_eq!(U256::ZERO, allowance);
@@ -1038,7 +1045,7 @@ mod tests {
         alice: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         let err = contract
             .sender(alice)
@@ -1055,7 +1062,7 @@ mod tests {
         bob: Address,
     ) {
         let id = uint!(2_U256);
-        let one = uint!(1_U256);
+        let one = U256::ONE;
 
         let err = contract
             .sender(alice)
