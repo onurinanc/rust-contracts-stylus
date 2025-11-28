@@ -116,8 +116,6 @@ impl Erc6909TokenSupply {
     /// transferring it from [`Address::ZERO`]. Relies on the `_update`
     /// mechanism.
     ///
-    /// Re-export of [`Erc6909::_mint`].
-    ///
     /// # Errors
     ///
     /// * [`Error::InvalidReceiver`] - If the `to` address is [`Address::ZERO`].
@@ -138,8 +136,6 @@ impl Erc6909TokenSupply {
 
     /// Destroys a `amount` of token `id` from `account`.
     /// Relies on the `_update` mechanism.
-    ///
-    /// Re-export of [`Erc6909::_burn`].
     ///
     /// # Errors
     ///
@@ -165,8 +161,6 @@ impl Erc6909TokenSupply {
     /// tokens.
     ///
     /// Relies on the `_update` mechanism.
-    ///
-    /// Re-export of [`Erc6909::_transfer`].
     ///
     /// # Errors
     ///
