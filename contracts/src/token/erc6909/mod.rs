@@ -391,7 +391,7 @@ impl Erc6909 {
     /// # Events
     ///
     /// * [`Approval`].
-    fn _approve(
+    pub fn _approve(
         &mut self,
         owner: Address,
         spender: Address,
@@ -444,7 +444,7 @@ impl Erc6909 {
     /// # Events
     ///
     /// * [`OperatorSet`].
-    fn _set_operator(
+    pub fn _set_operator(
         &mut self,
         owner: Address,
         spender: Address,
